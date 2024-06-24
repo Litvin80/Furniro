@@ -253,9 +253,9 @@ body {
         }
         @media (any-hover: hover) {
             &:hover {
-                transform: scale(1.02);
+                transform: scale(1.01);
                 //box-shadow: 8px 12px 8px 0px rgba(0,0,0,0.34);
-                box-shadow: 0px 0px 20px -1px rgba(64,63,64,1);
+                box-shadow: 0px 0px 20px -1px rgba(64,63,64,0.5);
             }
         }
     }
@@ -279,7 +279,7 @@ body {
 /*--------------OUR-PRODUCT------------*/
 .our-products {
     @include adaptiveValue('padding-top', 32, 10);
-    @include adaptiveValue('padding-bottom', 35, 10);
+    @include adaptiveValue('padding-bottom', 35, 15);
     &__container {
     }
     &__title {
@@ -295,7 +295,58 @@ body {
             grid-template-columns: repeat(auto-fill, minmax(rem(220), 1fr));
         }
         @media (max-width: $mobile) {
+            gap: rem(20);
             grid-template-columns: repeat(auto-fill, minmax(rem(200), 1fr));
+        }
+        &:not(:last-child) {
+           @include adaptiveValue('margin-bottom', 44, 10);
+        }
+    }
+    &__button {
+        text-align: center;
+        a {
+            color: $gold;
+            border: rem(2) solid $gold;
+            padding: rem(12) rem(78);
+            font-weight: 600;
+            transition: all 0.3s ease-in-out;
+            position: relative;
+            font-size: rem(18);
+            &::after {
+                position: absolute;
+                visibility: hidden;
+                content: "";
+                width: 50px;
+                height: 50px;
+                border: 3px solid transparent;
+                top: calc(-50% - rem(2));
+                right: rem(-20);
+                transform: rotate(45deg) translate(50%, 0);
+                z-index: -1;
+                transition: all 0.3s ease-in-out;
+            }
+            &::before {
+                position: absolute;
+                visibility: hidden;
+                right: rem(-22);
+                color: transparent;
+                font-size: rem(20);
+                transition: all 0.3s ease-in-out;
+            }
+            @media (any-hover: hover) {
+                &:hover {
+                    padding: rem(12) rem(60);
+                    letter-spacing: rem(2);
+                    &::after {
+                        border: 3px solid $gold;
+                        visibility: visible;
+                    }
+                    &::before {
+                        color: $gold;
+                        visibility: visible;
+                    }
+                }
+            }
         }
     }
 }
@@ -421,10 +472,7 @@ body {
         padding: rem(0) rem(20);
     }
     &__button {
-        display: inline-flex;
         position: relative;
-        align-items: center;
-        justify-content: center;
         padding: rem(12) rem(54);
         font-weight: 600;
         color: $gold;

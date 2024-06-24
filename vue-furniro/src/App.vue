@@ -18,7 +18,7 @@
                   <div class="title-block__text">
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis.</p>
                   </div>
-                  <a href="#" class="title-block__button">Buy NOW</a>
+                  <a href="#" class="title-block__button button">Buy NOW</a>
                 </div>
               </div>
             </div>
@@ -104,8 +104,11 @@
               is-new="true"
             />
           </div>
+          <div class="our-products__button">
+            <a href="#" class="button icon-arrow">Show More</a>
+          </div>
         </div>
-      </section>
+      </section>  
     </main>
   </div>
 </template>

@@ -26,9 +26,6 @@
         }
     }
     &__button {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
         text-transform: uppercase;
         color: $whiteColor;
         background-color: $gold;
@@ -52,5 +49,11 @@
     color: $darkGrey;
     font-weight: bold;
     font-size: rem(32);
-    line-height: 150%; /* 48/32 */
+    line-height: 130%;
+}
+
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
