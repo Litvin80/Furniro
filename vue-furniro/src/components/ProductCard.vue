@@ -1,4 +1,7 @@
 <script setup>
+    import { ref, onMounted } from 'vue';
+
+    // Визначення пропсів компонента
     defineProps({
         imageUrl: String,
         title: String,
@@ -10,21 +13,28 @@
         isNew: Boolean,
     });
 
-    // Імпортуємо необхідний метод з utils.js
+    // Імпортуємо метод перевірки пристроя на тачскрін з utils.js
     import { isTouchDevice } from '../utils/utils.js';
-
-    // Додаємо клас 'button-on-mobile' до кнопки, якщо <body> має клас 'touch'
     const isTouch = isTouchDevice();
-    const actionCardInMobile = {
-        'action-card-in-mobile': isTouch,
-    };
 
+    // Посилання на елементи
+    const buttonRef = ref(null);
+    const imageContainerRef = ref(null);
+
+    // Якщо пристрій з тачскріном, переміщуємо кнопку в контейнер зображення
+    onMounted(() => {
+        if (isTouch && buttonRef.value && imageContainerRef.value) {
+            imageContainerRef.value.appendChild(buttonRef.value);
+            buttonRef.value.classList.add('button-on-mobile');
+        }
+    });
+    
 </script>
 
 <template>
     <div class="our-products__card product-card">
         <div class="product-card__top">
-            <div class="product-card__image">
+            <div class="product-card__image" ref="imageContainerRef">
                 <img :src="imageUrl" alt="product">
             </div>
         </div>
@@ -39,9 +49,9 @@
             </div>
         </div>
         <a href="#" class="product-card__link"></a>
-        <div class="product-card__action action-card" :class="actionCardInMobile">
+        <div class="product-card__action action-card" :class="{ 'action-card-on-mobile': isTouch }">
             <div class="action-card__body">
-                <button class="action-card__button button">Add to cart</button>
+                <button ref="buttonRef" class="action-card__button button">Add to cart</button>
                 <div class="action-card__items">
                 <div class="action-card__item icon-share">Share</div>
                 <div class="action-card__item icon-compare">Compare</div>

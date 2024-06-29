@@ -295,8 +295,8 @@ body {
             grid-template-columns: repeat(auto-fill, minmax(rem(220), 1fr));
         }
         @media (max-width: $mobile) {
+            grid-template-columns: repeat(auto-fill, minmax(rem(210), 1fr));
             gap: rem(20);
-            grid-template-columns: repeat(auto-fill, minmax(rem(200), 1fr));
         }
         &:not(:last-child) {
            @include adaptiveValue('margin-bottom', 44, 10);
@@ -392,7 +392,7 @@ body {
             object-position: center;
             aspect-ratio: 1/1;
             @media (max-width: $mobileSmall) {
-                max-height: rem(300);
+                max-height: rem(380);
             }
         }
     }
@@ -455,20 +455,41 @@ body {
     }
 }
 .action-card {
+    &.action-card-on-mobile {
+        opacity: 1;
+        visibility: visible;
+        bottom: 0;
+        left: 0;
+        transform: translate(0);
+        .action-card__body {
+            bottom: 0;
+            left: 0;
+            transform: translate(0);
+        }
+        .action-card__items {
+            margin-bottom: rem(10);
+        }
+        .action-card__item {
+            color: $Grey;
+        }
+        .product-card__content {
+            padding: rem(16) rem(20) rem(45) rem(16);
+        }
+    }
     z-index: 2;
     opacity: 0;
     visibility: hidden;
     position: absolute;
-    top: 50%;
+    bottom: 50%;
     left: 50%;
-    transform: translate(-50%);
+    transform: translate(-50%, 0);
     text-align: center;
     transition: all 0.3s ease 0.1s;
     &__body {
         position: relative;
         top: 50%;
         left: 50%;
-        transform: translate(-50%, -50%);
+        transform: translate(-50%, 50%);
         padding: rem(0) rem(20);
     }
     &__button {
@@ -487,6 +508,13 @@ body {
                 color: $whiteColor;
                 background-color: $gold;
             }
+        }
+        &.button-on-mobile {
+            
+            width: 100%;
+            font-size: rem(16);
+            padding: rem(12) rem(54);
+            border: rem(1) solid $gold;
         }
     }
     &__items {
